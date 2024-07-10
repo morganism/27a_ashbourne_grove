@@ -1,0 +1,164 @@
+Delivered-To: morgan.sziraki@gmail.com
+Received: by 2002:a05:7208:3148:b0:83:8ade:8a22 with SMTP id c8csp1863800rba;
+        Fri, 3 May 2024 09:34:19 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGc+EMaRxsLlUj11ZSzjVi2Hfft3/63+n4W1kcrUqlgyXQv7vX8OEzbVq1V1SdX8JHmn6eA
+X-Received: by 2002:a5d:5946:0:b0:343:79e8:a4d6 with SMTP id e6-20020a5d5946000000b0034379e8a4d6mr2117428wri.25.1714754059352;
+        Fri, 03 May 2024 09:34:19 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1714754059; cv=none;
+        d=google.com; s=arc-20160816;
+        b=lltgaBPOCkKgo03rNTbF8N5R8RhENGQgQMRPFZcAVPgYz9YUOcb2XbXbrul9PzcSgg
+         UUMORuCbiYwleO6oL+kgPURPlt5ES5VD+dP3BS2knI0jyeMAsjc2wfy7dxA4nUf4Vc0B
+         cztIJhM7cvfptzsDD+04esB+eDmaSiMJNbbQfyOL+dpEADecCjqd9+RIsbraHmUQR3Bv
+         G6HhzvlTyf5mFJJ80UhFje8yH+aUOV9izANiYqeat1phI2l71vvyi+VnRhPlq081pa/n
+         iPo8SnXLV7Ph8MK3cq0+JQYvb9XjXXt5M1BZFVEEV9naTo4sApgHNgPUu0n++vA5V6Dz
+         U+Fw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=references:to:cc:message-id:subject:date:mime-version:from
+         :content-transfer-encoding:dkim-signature;
+        bh=o/gL7eE3EvSJI2yjJFBaro9aJ7eKooCoQZOEsMSsunA=;
+        fh=cmGMGsUcRwqSY0wQOtoJ7fAb49KS+DefrWERva4D61w=;
+        b=Cin1hsnZt+IS4lmpAFZZVavzBc7qrLs9/Xi+otZVmGtHlPRPS6igv3ZKfQCL+Fb+zi
+         rMQi9xFgaO+Z4sLegYpsXHnJU2qtllCpba/p3I4yXnpbMd6qYaH7Qu4LdV/q6eXHnMxk
+         PvpCO/iAQXsjwYtPjGqwfWay5lWN82TSxvfUnQlLX1R8doFBpxpuIRVmwvxifhFd283g
+         JCsxdZypSYPzmgXx0rem/Hf+V4c0fF7nlqYNOOBr1MbswJL6XDUstokYltuJ/QDDfEQy
+         su64TJVsXkqTwa1aMIxRi2CSHDqmxwQTDhIWiyeKlB9tX5ySqCALnaPJdB3AYAaDTCBX
+         wVnw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.co.uk header.s=s2048 header.b=AhzebwR1;
+       spf=pass (google.com: domain of wend_walk@yahoo.co.uk designates 77.238.176.99 as permitted sender) smtp.mailfrom=wend_walk@yahoo.co.uk;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.co.uk
+Return-Path: <wend_walk@yahoo.co.uk>
+Received: from sonic301-22.consmr.mail.ir2.yahoo.com (sonic301-22.consmr.mail.ir2.yahoo.com. [77.238.176.99])
+        by mx.google.com with ESMTPS id d3-20020adffd83000000b00346362beae3si2166426wrr.389.2024.05.03.09.34.19
+        for <morgan.sziraki@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 03 May 2024 09:34:19 -0700 (PDT)
+Received-SPF: pass (google.com: domain of wend_walk@yahoo.co.uk designates 77.238.176.99 as permitted sender) client-ip=77.238.176.99;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.co.uk header.s=s2048 header.b=AhzebwR1;
+       spf=pass (google.com: domain of wend_walk@yahoo.co.uk designates 77.238.176.99 as permitted sender) smtp.mailfrom=wend_walk@yahoo.co.uk;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.co.uk
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.co.uk; s=s2048; t=1714754059; bh=o/gL7eE3EvSJI2yjJFBaro9aJ7eKooCoQZOEsMSsunA=; h=From:Date:Subject:Cc:To:References:From:Subject:Reply-To; b=AhzebwR1kPqk1ZpTAZxiw09rZZzsyNkTYrtziJd6B27RBsRq2ypmCD5dYG6VtCN6C2aiFtCIXTRqlYTYb6g3opN6O0sZoQRRENJpuAtgYCcitxuUFQ7UICj8BnRVt+W9bCXLAcUACwtKlBN0ZHf/ho14A8zIF5/MovkYmApwmD+bgaRMdRoGHCzXPnDvAT9wJ7etLsHpNkmekQZb1DcfT4Qzd5r9uyE2guLuC4cmglPRb8yk37g6qRf5SyTAG4ZAFswwkmVAyXafn3g18p15M4YG9bAq5LkLBh19N1UZ6e8J7kxodaMGOpVgr4mkMsB3tT6vQ05v5Gw82xrMDewm3A==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1714754059; bh=OQ+65F6rpHWCDPx2pkdHJrzdT+a7i5kTXvmMqug2SMR=; h=X-Sonic-MF:From:Date:Subject:To:From:Subject; b=Hqi7iRbh1adgK77AtBDz/iu3DtDNX+zqhybj3ip3mIKmgjqH/wMEGZvSGKuXSapiRt4iyVudLeUUWjPlXRThaZZla/UMN9QdxGw6U1jO2uf1m8h0j+4VwDeEDbOgL2EmS86H49sIVU7eCkvWf6J1WICnti7qSoNcpPH7SoFaG7nsJf+c/04YTPfQPoQJnOT1tytvrkLLYjGp7jIZb3Adzp3F3o/ED58VlaWXdKzpgbJ+rZXaefNaYgFtFzO0cupGM3LdGe+ZMeanMnrrigwJr4AUw8l/4BPdC0F1lWH6WT+zTJDLHU6C/44nK5NVG4NiTGeyniq2HRKwkApRAegskw==
+X-YMail-OSG: _fPfYPAVM1n0iIBe0LsHu7v69tPUWgTLM4HCeWrVF9FvN38vJfoQcq2J0OUpHjo
+ CwvZAcAdQSWbcIbZn1AEhynlvofeD_URAvVzuhVdRfNZVr7.wi_Nkh8pDzXes3_.ytbhzTANmi8Y
+ tMU6FaPt6R5LFzYauJLWM.WcPBxXxaYKkKuDcTz7ldHrAHg1yWKR7d8QnV5Lwz0sNP7xKvUdETf.
+ fHytGl7dKB1mM6iD8jMyFw70hm9vqO6KV6OfXkVUvIr46JvVs9gfLS.7L1o.oIBao0pFPTZ92eyw
+ eRnT.Nf4egacRRR9oWe_pfLE48PDcTm_vLIurKGYXgX8tF.nPRdVhh1HYLIFo17pCPilLYgAvYRK
+ ohBqdxJ9pm6WnzMvWLJ2KIl3iuE983jhrCpXhDdD9_N60yGo0P0iuMJNwfH.3uJYpr5crIhBQDiQ
+ _nPNDGmsWiqRNaXtxXHR8MxMar6FB3kpRyhADxWTTBH6AXkvBxwfkw3leDIa0v7aOrP1.t0DPv7X
+ E5uKZmtDMGhNtTLLv3HZOhmRFoLADbwplUVZzrQs71E8eAVLHxrRpBCMgSS3cRJzOEiF8KZz4gS6
+ RStOz8mkVPM_7wWujVkWETENysm1pYNhsUy7x2zV9soQiKF5uJS_8RXV9ZHuKyd7EaWXUugDA.xG
+ 0RZUYmkuAWmVpuI2NiCRJSDQVIIJiUm3OenSLEyQPBZyIqres8nIoCR1q7j_La7VgqeSujS0CCJ8
+ h2uzcddSiLasy9tSEz9GcM36dWZXmx1VQ9b5C64wiIPhKmK4w456YiHOo2rMDAnt4hye4B05itdk
+ Ro0XOGmowBCZHb4OlZuuv.Jpe2ngVMuWX6G.RO5pMWws22NHKmuj3k61W7_Pc.Y8IMysvWZz5F4N
+ im1gc_Ts6bc_fO7k1y3vBMbOZ6GkgU01s.UsCo6HwvSssLjtgO8_rP.c7ihs7MvRn1Qk4PV_K4Rr
+ GjuLOT70v95mwmDQ2RvLiAg8EARZppYW2LgwaFXNwmRd3qSeFKqc9fjFFxYcBgrWjncEZzbcjDUM
+ XMomZUOMJQfUCIaX3q8lYWi75kN7e4en90CYpzTYx34z.ATInP37_.lNuIkMxT0L226ol2r6aOjX
+ GsywH_14utW08vP_mv8bqQQSKMkqldc31Sh16ROoyqGG0NCdieZW3VN97WYm_PxGb441S52sGVop
+ y1dwoS8p1xM1h1v3KxCJ9eschdcxph5e_J9cNf3pYqopmzbB_wxVMm9WS5oipRvVWpRArtBrIZ5J
+ J4QzpAZh3QFSTT._zxI7AxI_QUA3KlWYBMaCPy80NjaSZiU9wDQbCX4r.lobDCnFjuK5H.450Xcn
+ s8kuYSrX4ctZ7ldV39fTxTQlon4p0dS_RkV6yUHuAN8WEEwmWka_cZG5fzptQbdJgdKaVR_lecCE
+ U.NoozeXn7mfNYy70RpMMrUAajlmUvOr6kod2FfJMN_pJ5u0.C.Tnj8fwdM5spDyfmgqBDj5v_7U
+ tlACq0.SfVfgANw_CkzJMyeUNTM8bitFjRX4fiqrnh6CRh6OjPWRxO65QbwuHQl1F5nztEEmOqp9
+ kXTc600X8UbkDjmSgCndF.CGbC2ZSg5Rz1iyo7PwEfLNu.J7bJYBONd7DXq0KfS3R2HC3DQlB2ZA
+ JbuN5eYD8VsTDs9NEm4dpzxboO9hkMkyCh8zvZX4zP1JcjtE4B3IbCHy3UI22Iv9609OnKi1g.uZ
+ RG83FN3aTBsCT_9HtELS_jDlbo_zJCx5McEWcYxungCyHZJI5GH6sMhQBB.FWNFQNUaaGzSOeFCi
+ LKYAMU5UUoaFPfWjHmzXIaYUF.tjpW6J4Hp8bMwPg5M77s_qmhnRWRev6DcB.pw0fMzmS3irRQ4C
+ x.k4iV.CSu_6cvguZgHLXeNo0e46aOaj.6I_wNT1KOzYxnnuhEwY6PdzMvTkG6AAq61YnA_WK.PV
+ zjIENYKpDvuPKJ8gAA8IwsutdMaloZ_vL58Q6LIrJaeCsD63cJLGd.ofwoBYyc2XJOJGaOm7_KYM
+ 1j92NAiwgSRNUd2tef4dCI4mZrdN.Z5ynn0xFdplghtuBXDAUEGIaCcFZqSrZk4Y_BRZbF84ARq9
+ kQFQYPjtqpfISMDq1Dt6fGJvemHGcclVTCYB15kTlngBZo374HS5rOM.kzpVPY9IMIPGsGvegkF3
+ Xus2SbcinROLdQyr3jIulOqIbibuqXdOj9Ywqp9cVFFkzo_.RHgLxBceAdhYBWKvyPSZ42jHOatz
+ UB8pqXTPWFZSemU8g5lJiznvWcDel3MhCqgnTlPIRlaH6EJRg6WRJ
+X-Sonic-MF: <wend_walk@yahoo.co.uk>
+X-Sonic-ID: d4fbde44-3720-46a0-9e6b-bf43805345d3
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic301.consmr.mail.ir2.yahoo.com with HTTP; Fri, 3 May 2024 16:34:19 +0000
+Received: by hermes--production-ir2-7b99fc9bb6-xrt8s (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 0eb83fcb54500ccbc23ebd683deb73c3;
+          Fri, 03 May 2024 16:34:18 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=Apple-Mail-140342B6-9DF0-41DD-BD29-49E925A09C60
+Content-Transfer-Encoding: 7bit
+From: Wendy Walker <wend_walk@yahoo.co.uk>
+Mime-Version: 1.0 (1.0)
+Date: Fri, 3 May 2024 17:34:06 +0100
+Subject: Statement for letter from Wendy and Morgan
+Message-Id: <57459E77-713B-4410-BAB4-28AA3D301935@yahoo.co.uk>
+Cc: Morgan Sziraki <morgan.sziraki@gmail.com>
+To: Pallen55@ymail.com
+X-Mailer: iPhone Mail (20D67)
+References: <57459E77-713B-4410-BAB4-28AA3D301935.ref@yahoo.co.uk>
+Content-Length: 3954
+
+
+--Apple-Mail-140342B6-9DF0-41DD-BD29-49E925A09C60
+Content-Type: text/plain;
+	charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
+
+
+Hi Phil as discussed today proposed content of signed letter below:
+
+Wendy Louise Walker and Morgan Ingram Sziraki (as joint owners of the freeho=
+ld of 27 and 27a Ashbourne Grove, SE22 8RN) give consent for the owners of 2=
+7a Ashbourne Grove, SE22 8RN to complete internal refurbishment of 27a Ashbo=
+urne Grove, SE22 8RN.
+
+This consent does not include works that require structural changes, plannin=
+g permission, party wall notices or structural surveys.
+
+This consent does not cover removal of interior walls or exterior windows.
+
+Future plans for building or structural changes to 27a Ashbourne Grove requi=
+ring planning permission, party wall notices or adherence to building regula=
+tions will need a separate statement of consent from Wendy Louise Walker and=
+ Morgan Ingram Sziraki.=20
+
+
+Wendy
+
+Sent from my iPhone=
+
+--Apple-Mail-140342B6-9DF0-41DD-BD29-49E925A09C60
+Content-Type: text/html;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto"><br><div dir=3D"ltr"><p class=3D"MsoNormal"=
+ style=3D"-webkit-text-size-adjust: auto; margin: 0cm 0cm 0.0001pt; font-siz=
+e: 11pt; font-family: Calibri, sans-serif;">Hi Phil as discussed today propo=
+sed content of signed letter below:</p><p class=3D"MsoNormal" style=3D"-webk=
+it-text-size-adjust: auto; margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-f=
+amily: Calibri, sans-serif;"><br></p><p class=3D"MsoNormal" style=3D"-webkit=
+-text-size-adjust: auto; margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-fam=
+ily: Calibri, sans-serif;">Wendy Louise Walker and Morgan Ingram Sziraki (as=
+ joint owners of the freehold of 27 and&nbsp;<span dir=3D"ltr" style=3D"text=
+-decoration: underline;">27a Ashbourne Grove, SE22 8RN</span>) give consent f=
+or the owners of&nbsp;<span dir=3D"ltr" style=3D"text-decoration: underline;=
+">27a Ashbourne Grove, SE22 8RN</span>&nbsp;to complete internal refurbishme=
+nt of&nbsp;<span dir=3D"ltr" style=3D"text-decoration: underline;">27a Ashbo=
+urne Grove, SE22 8RN</span>.<o:p></o:p></p><p class=3D"MsoNormal" style=3D"-=
+webkit-text-size-adjust: auto; margin: 0cm 0cm 0.0001pt; font-size: 11pt; fo=
+nt-family: Calibri, sans-serif;"><br></p><p class=3D"MsoNormal" style=3D"-we=
+bkit-text-size-adjust: auto; margin: 0cm 0cm 0.0001pt; font-size: 11pt; font=
+-family: Calibri, sans-serif;">This consent does not include works that requ=
+ire structural changes, planning permission, party wall notices or structura=
+l surveys.<o:p></o:p></p><p class=3D"MsoNormal" style=3D"-webkit-text-size-a=
+djust: auto; margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;"><br></p><p class=3D"MsoNormal" style=3D"-webkit-text-size-adj=
+ust: auto; margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-family: Calibri, s=
+ans-serif;">This consent does not cover removal of interior walls or exterio=
+r windows.<o:p></o:p></p><p class=3D"MsoNormal" style=3D"-webkit-text-size-a=
+djust: auto; margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;"><br></p><span style=3D"font-family: Calibri, sans-serif; font=
+-size: 11pt; -webkit-text-size-adjust: auto;">Future plans for building or s=
+tructural changes to 27a Ashbourne Grove requiring planning permission, part=
+y wall notices or adherence to building regulations will need a separate sta=
+tement of consent from Wendy</span><span style=3D"font-family: Calibri, sans=
+-serif; font-size: 11pt; -webkit-text-size-adjust: auto;">&nbsp;Louise Walke=
+r and Morgan Ingram Sziraki.&nbsp;</span></div><div dir=3D"ltr"><br></div><d=
+iv dir=3D"ltr"><br></div><div dir=3D"ltr">Wendy</div><div dir=3D"ltr"><br></=
+div><div dir=3D"ltr">Sent from my iPhone</div></body></html>=
+
+--Apple-Mail-140342B6-9DF0-41DD-BD29-49E925A09C60--

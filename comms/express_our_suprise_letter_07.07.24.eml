@@ -1,0 +1,551 @@
+Delivered-To: morgan.sziraki@gmail.com
+Received: by 2002:a05:6359:7809:b0:1aa:af6f:af7a with SMTP id vy9csp1128495rwb;
+        Sun, 7 Jul 2024 08:28:50 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFaXkhaoxrqZMSDOnL4ag1rhqBvTbhf9pyHHZL71rVCPKQAe/Dh+e+XboMOh2a0OwYdYBEH
+X-Received: by 2002:a05:6214:2124:b0:6b4:f34e:1304 with SMTP id 6a1803df08f44-6b5ed08a88cmr131455476d6.43.1720366130247;
+        Sun, 07 Jul 2024 08:28:50 -0700 (PDT)
+Return-Path: <Wendy.Walker@gstt.nhs.uk>
+Received: from smtp2.e.amses.net (smtp2.e.amses.net. [213.161.89.103])
+        by mx.google.com with ESMTPS id 6a1803df08f44-6b5dcad889bsi113392476d6.412.2024.07.07.08.28.49
+        for <morgan.sziraki@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 07 Jul 2024 08:28:50 -0700 (PDT)
+Received-SPF: pass (google.com: domain of wendy.walker@gstt.nhs.uk designates 213.161.89.103 as permitted sender) client-ip=213.161.89.103;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gstt.nhs.uk header.s=emailsecurity header.b=Cyfh5OLQ;
+       dkim=neutral (body hash did not verify) header.i=@GSTT.onmicrosoft.com header.s=selector1-GSTT-onmicrosoft-com header.b="KvgsSVO/";
+       arc=fail (body hash mismatch);
+       spf=pass (google.com: domain of wendy.walker@gstt.nhs.uk designates 213.161.89.103 as permitted sender) smtp.mailfrom=Wendy.Walker@gstt.nhs.uk;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=gstt.nhs.uk
+Received: from smtp2.e.amses.net (OP-HEPIMS05.ops.amses.net [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id D893F138677
+	for <morgan.sziraki@gmail.com>; Sun,  7 Jul 2024 16:28:48 +0100 (BST)
+Received: from smtp2.e.amses.net (OP-HEPIMS05.ops.amses.net [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id B069B13865C
+	for <morgan.sziraki@gmail.com>; Sun,  7 Jul 2024 16:28:48 +0100 (BST)
+Received: from SV-PR-MMN3 (smtp.gstt.sthames.nhs.uk [10.145.32.249])
+	by smtp2.e.amses.net (Postfix) with ESMTP
+	for <morgan.sziraki@gmail.com>; Sun,  7 Jul 2024 16:28:48 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gstt.nhs.uk;
+	s=emailsecurity; t=1720366128;
+	bh=xKgbm9msryWSUai2vl8VexEx9Un5H7kEZxdXoDeXzaQ=;
+	h=From:To:Subject:Date;
+	b=Cyfh5OLQjbbcVvlDBcrPvmJWUarvEaFx4MOk7QCmlmaKtzcZw3ElHuvVcjYJuHvcm
+	 PcRd+Re4as/tmP+ArGebVEV4gTw/60RnOxOXuSIYU/rOLg5qvHEB2bQ4ruY/B3fq4u
+	 RdtWubEqFKzto64taqPovISDtTDb5p0xFU2V1dVXp3OAaWmOARaAa2fXf7lLIOeC6k
+	 /0rplqssWtiCezGO78b5asySTH7VSgVMh111LdXEdPHlfi8OnWAaYl5e8caIKMdJkE
+	 oiv6lWwscfeY5nSBjMQTxar2RRRUTGPIjGMkzFym6h7165T139iA+Lb2j+r1gjQfrd
+	 VD5bMMRcU6gOg==
+Received: from SV-PR-EX08.gstt.local (Not Verified[10.188.196.108]) by SV-PR-MMN3 with Trustwave SEG (v8,2,4,11170)
+	id <B668ab4300000>; Sun, 07 Jul 2024 16:28:48 +0100
+Received: from SV-PR-EXCHYB02.gstt.local (10.36.145.41) by
+ SV-PR-EX08.gstt.local (10.188.196.108) with Microsoft SMTP Server (TLS) id
+ 14.3.498.0; Sun, 7 Jul 2024 16:28:47 +0100
+Received: from SV-PR-EXCHYB01.gstt.local (10.36.145.40) by
+ SV-PR-EXCHYB02.gstt.local (10.36.145.41) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Sun, 7 Jul 2024 16:28:47 +0100
+Received: from SV-PR-EXCEDG02.gstt.local (10.189.214.69) by
+ SV-PR-EXCHYB01.gstt.local (10.36.145.40) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Sun, 7 Jul 2024 16:28:47 +0100
+Received: from GBR01-LO4-obe.outbound.protection.outlook.com (104.47.85.104)
+ by outlook.gstt.nhs.uk (10.189.214.69) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Sun, 7 Jul 2024 16:28:47 +0100
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XnY8K9XafJrUyOY/OB2kmSKL2J35hkAnumLfvR3pptuA/3WVie/p8xVZCBY9EwuYpIGACTZpNOymp+H0iVBLhMIv33j+d8kfUnbUQHOB+RNMP8uXFqzz2J2Tf0jitnE7NeboJEamUhLH3yq0QiUHXTE/DDduJpnyBWx1VmZAC8oAXR/MwOBs58ipOptakpoNjd/maF94RlnasM2RWWxJziN+CyqY9JsPf8BSaByokxt8hqWR0dnFHovv3HjA5PQENFSJS0lpOk8gvKAi4DbOtRfbyuPsJUFruZI1O/6p3jXLheKG+zTQoCABrsXWTJTh8t7gLPTsdHL/2r8svmtd5w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=md7HDr+0TewWeVDsn9TyKpOlhvDDfEkq+qTV7xKKgkM=;
+ b=gP0ngasGPvBQGRUJ/HSuvkZtAdE3HA4y9JsA4aE35vZIIUp8j5sAPqc+1eohL20Rd+XKIGDG2T8iIFFHaUJeKtcd7Z/kzf1aaS5M8//SE/5ac/KtbgSUurxtRwiDrxuHo4jrFQzpQvR9ZoxYI9FWd/qMa08jAquLY7f4nnHa7oTmt2bFgin/dq49WJiMXwDcqr0E/BNPjkERhVpGJwSh5cN3ieyjjJIPMwL7F7diadcNrkHwRwb0JoEAjAnD+OgbeMLqMD5+zM5rgFEDu1jkuhgUgaUo+hhFVExtsXXquom+6zaNmjGnBeT5uVLoL1Mwv8rYRTlB4Xk48VvvQ0ySIQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=gstt.nhs.uk; dmarc=pass action=none header.from=gstt.nhs.uk;
+ dkim=pass header.d=gstt.nhs.uk; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=GSTT.onmicrosoft.com;
+ s=selector1-GSTT-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=md7HDr+0TewWeVDsn9TyKpOlhvDDfEkq+qTV7xKKgkM=;
+ b=KvgsSVO/oC/G29rn5ww81ymmj0RNtkOTef2IGhTE8eqBYchR9d088CQcZm3srDyZ+LfDf8+ZvrvB7aIyTcqq0yj9dGMb/OM67vJYa1FS2gBdQU8rCT8MnnHr0C1Bq4teqop3qWW60Skxq2HH81FTW8h46P/inBVEPo/PkZugm64=
+Received: from CWLP265MB4531.GBRP265.PROD.OUTLOOK.COM (2603:10a6:400:166::12)
+ by LO2P265MB5399.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:25a::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7741.35; Sun, 7 Jul
+ 2024 15:28:46 +0000
+Received: from CWLP265MB4531.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::f56b:fc2c:7c25:56f]) by CWLP265MB4531.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::f56b:fc2c:7c25:56f%4]) with mapi id 15.20.7741.033; Sun, 7 Jul 2024
+ 15:28:45 +0000
+From: Walker Wendy <Wendy.Walker@gstt.nhs.uk>
+To: "morgan.sziraki@gmail.com" <morgan.sziraki@gmail.com>
+Subject: letter 07.07.24
+Thread-Topic: letter 07.07.24
+Thread-Index: AdrQgjZVqhTWfLGyTAKrSI2OWgJ1Qg==
+Date: Sun, 7 Jul 2024 15:28:45 +0000
+Message-ID: <CWLP265MB45313AB816434548BF7D1136CCD92@CWLP265MB4531.GBRP265.PROD.OUTLOOK.COM>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=gstt.nhs.uk;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CWLP265MB4531:EE_|LO2P265MB5399:EE_
+x-ms-office365-filtering-correlation-id: f6e4637a-ac9c-482a-1c16-08dc9e997dd7
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|366016|376014|1800799024|38070700018;
+x-microsoft-antispam-message-info: =?us-ascii?Q?bEjpH0ohQPD9Qa0yPmrIe19EgwWb4IsYgx21OFKCNimdMDrJPGzVeFaFbEBK?=
+ =?us-ascii?Q?Xtw5qTMg6VKxAyBV4VaXzZ4hDSNn1d7+SBRqO7r6reTvshLm3aCU5r9GnCBx?=
+ =?us-ascii?Q?bZyQbBYOMsOGCuCHNbdoh6j6gTUvxnBPedsPDxhvBKSYbVsIDThajsFCcRMy?=
+ =?us-ascii?Q?XrPLmqRCq+KDWKQkd/4/D5OcPCExEKL37fXjAvOt4ny9zSScn59JnOgp8Cln?=
+ =?us-ascii?Q?uKOPvvefq2aAomhuxG1gY1+euCT2Qilf+HTlIHo8XbTNRxLWG9Hby28B3+JJ?=
+ =?us-ascii?Q?JtMHSLhs8CixSaE8Vk1FmXoXWoB1ibNuCLlJrNQ4rM9RDLOhW2PjUJ6boRXU?=
+ =?us-ascii?Q?tHBoRMRlhNnx+CGLcJWANENZ9aENBQfK500b4umAwJD5K77Wk0rk2J8sn8Cv?=
+ =?us-ascii?Q?aSxYay3jLGk6Lo50rRBsDnPnYIvpdJ1ur2A6NSFqbkZtuvwK+N7JTJB26c8W?=
+ =?us-ascii?Q?XqEO68Pn+kn/5GVC+DXTsGvQeVd2JgkXQHDGv3yLU7Hi5fKmzibmm0jxC8HG?=
+ =?us-ascii?Q?DYyrccooQktIIW0STCFJNBqB7N6nyk8KjrcOGCNQLqjXNzH0pfyWuo60O7Vn?=
+ =?us-ascii?Q?nSXJC/DmES7Tg/LG0V7x7qmHllmClLbu9y5b17by8zgCDzv6Ig68sq7qqEM0?=
+ =?us-ascii?Q?w6FAFSfjYb13+P0oCWI80S1lvy5vDyHHH2tpQg2/aztrRUD4wAAhrcEo3gaU?=
+ =?us-ascii?Q?c63P88wG3sVpZAOpa623jrHM3hv9Q7PPKag8N21mraVi2GqYDtHgtsJyapGF?=
+ =?us-ascii?Q?pIK96XMEp9PG1zB52iLrqibccXRK1GCfl+ap0VJH9DAVLnIv9v3lhsRlBToW?=
+ =?us-ascii?Q?QEWv3XPwGe08Uo8ijtrpUnxGnVTZiSCFCfT+Vz/r4Yohh1Pkdh13GCdXyWbI?=
+ =?us-ascii?Q?WPIC2AAdApNm8T3zA8tEi/LTeycqQGuPFEHRjAsQ1dYGcrCRCBhBOGy1W96i?=
+ =?us-ascii?Q?iDX31xbX3S2NPB3WelVLr2Zexu1/DXeNI/K2krYZjMSxIM+WITP7JI9wQFRS?=
+ =?us-ascii?Q?W39JSJbWdv0o22BY8Fg+PhP0NpCpDoQuDHQobMYARjXNa+0pV0lEml7RBdLu?=
+ =?us-ascii?Q?W5wh80Zig32ElQNFn0qviyVZILJe+DKh1I4M7+s+4jyVBI1fxNmDheoJ/6ZV?=
+ =?us-ascii?Q?KY30yPQcYTcpwneoEFED7Em8y/49CwR0rzzm41XXuf7FIHpULe/eyzitu+vD?=
+ =?us-ascii?Q?eU7WzpaChLvAV1Svlk8npNVlVgEOeU98XErTdb8Ejh7TBcBiZru8JivpTN9j?=
+ =?us-ascii?Q?2PNfksK4dnq9ABFOFRv0B28qKpy5GlvIfPQj3rb5F6lT0f0zTk0OZXrd+YQT?=
+ =?us-ascii?Q?IBrdMjrXIQNKc1z2D8pS4c7uhzuHW+uaWd9QSJkl5OYBk/fQbVJ72tR6Wdbr?=
+ =?us-ascii?Q?3h2y8iYczqJ17tPiFDl6SzbVR41/e6KuJhSx9A/L3bL9pNSysw=3D=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CWLP265MB4531.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(1800799024)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?IZifJ3vh2dI5nTXRe/1Dp3d30RVr1g9qZwmz9kDGlFdbStwvNrUcQD7ommKX?=
+ =?us-ascii?Q?6dACbAFjCFeB/37y2SD0zLXXzxew/a9odgg/cCM7QG+arAFFVy4Xzf+2iw7i?=
+ =?us-ascii?Q?X2hBWCU6eVu48GBCHc42BSfjBn/U7pjkhX6hcdzAw+QgQWa6M5Vb2KsOzpwS?=
+ =?us-ascii?Q?WK01Oc2EXR+SBR/2qHUMbCIHe8ozSP4IRAhby9XVWytTMu79mNp1z1LxYhIV?=
+ =?us-ascii?Q?E8aOKRUi7HkjIOmsZ6XSfHBipGA/kI1zkfoGWKyx+QYK340knTWasVRQJ7C7?=
+ =?us-ascii?Q?xy6qZpX8Hqi6DTgBWTGx0yoTlbs4KB5FKmQQ+nd5iOL89iFW2tqjMYXQO0dc?=
+ =?us-ascii?Q?CWGor0YKa4KXlIg7zyIG6sRA+xzOkSrVXeiEVet4pInBa9eWLPROdEs8lKpD?=
+ =?us-ascii?Q?pYPKpGQqEUrYuR2b4L0Zy+MK9iGcH0uH4VqPL7/IoXar8l1CaHea3Aoj66Jz?=
+ =?us-ascii?Q?9r2j3yk5svUzvZw6MgeITYJw9eJgY+iRUNx8bra3k0+claroqEycQ8OP7YG+?=
+ =?us-ascii?Q?PvRHRlCiulg4MsfbPBTba879I6Uku3MHJKYeKNG08rGZLLHJxC49ewEJ+85Z?=
+ =?us-ascii?Q?b14DleT2vO5KGq+7fIS4JRIiptdi8aKAkTU089UqUE4sFoaOWTlJ0MdBYOQL?=
+ =?us-ascii?Q?lgUel9Zx2ovAEd66LWj5ZHZqW+aesauzB9L/R9af8046Sibv7DMxXdH86anG?=
+ =?us-ascii?Q?3r5KZxSG01Qq/ZPPEu6QJZaJ52r9XsIEEKSH4wvm3zOIImEx41INy5umIwJn?=
+ =?us-ascii?Q?NEf3Zfxc72cLmjuCpS2mnKzK/Q2m9qBPBDJTJazTUK0vXcKThyGtoFzvNnBC?=
+ =?us-ascii?Q?VtCw1w35J7jU1SOfcRC7cD3YZ/DjFRumuiPGHeoK15gRFAp+08jxtP/mdJuw?=
+ =?us-ascii?Q?oULr9ojo/NPVzLnlCaKFLRPnbfepiCLglaYp9LAuk7sxSwDjNTQk3LQxY/6T?=
+ =?us-ascii?Q?kNmB4elLE/p0fhaxR5K0gr6RlUESyIA6iGVydfnNwymGEKFNcdjnkMxRMYVg?=
+ =?us-ascii?Q?+MwfGuP1pFLQfbfKPZH0AOUHmegH11zRdrmHeCQ9s3yfc9JbrpYh1rvN1dQ0?=
+ =?us-ascii?Q?MJ/bOKCJp0N34z65JfJ/4iqXcRtUaCST1pCd+bkOAhor//10cSCfeGif6+Cv?=
+ =?us-ascii?Q?DvywCs8HXGuG6Zx4GUND7eBO5HcpBKSJovE5H64KhEK9aBQ/VXsMqHHW/OqF?=
+ =?us-ascii?Q?sTqJXKUvpiS5IAx+WlVXWRIf5Z/iUZsB61MiaK57nO/WTzzmyC1WN1p5Y5JF?=
+ =?us-ascii?Q?SYqReqFn5C4w0JtP1QkWopHIdvUFjI7f/NhUrKdyZF43Hq1D2BI9pXDsOeDK?=
+ =?us-ascii?Q?Y3lKxKagDydxNieSnX6HyZVg6MdOHDRIsLBt8mTVjwxfW5Y9VN6jVuMf+346?=
+ =?us-ascii?Q?73SyITwdYUrNdlj05CB7g+hN7obbyjAvRAW5FrdJh5MSUlFMCmfH0RB3Cq/2?=
+ =?us-ascii?Q?ZpayY2dykiRe5aooRU2mdoG2M+SUq0a07V3cJn7QeCVS9ZS6qFQjecRrPOvK?=
+ =?us-ascii?Q?MEg6HJlTjSyxrVmiCQbTWmrzsTntnEw9C5iOM/sgpCo13i7gmCOEcwy8CVSH?=
+ =?us-ascii?Q?PIQHXcdQ0OUZi/pt9WGUKUB01H3XBcAtMXAQY31j?=
+Content-Type: multipart/alternative;
+	boundary="_000_CWLP265MB45313AB816434548BF7D1136CCD92CWLP265MB4531GBRP_"
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CWLP265MB4531.GBRP265.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: f6e4637a-ac9c-482a-1c16-08dc9e997dd7
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Jul 2024 15:28:45.7636
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: b9f2d777-3403-4a88-807e-dd13349d42f6
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: gLON0DDiWHsSPHiaIIr569jGSCw0PYb6owiFB9KXX3Q7pubFxSZJ7duO9N9QRv7FD5bsyDlpptKFiJ+ESlHjCZtZNEt8F4CViVrE6PDrfJo=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LO2P265MB5399
+X-OriginatorOrg: gstt.nhs.uk
+X-SEG-SpamProfiler-Analysis: v=2.4 cv=LIbFQ4W9 c=1 sm=1 tr=0 ts=668ab430 a=6MSsnyPkhwSwZD6RVAhN1Q==:117 a=Ol13hO9ccFRV9qXi2t6ftBPywas=:19 a=xqWC_Br6kY4A:10 a=4kmOji7k6h8A:10 a=dfgWGU1ToycA:10 a=3hs7qZBsAAAA:8 a=TQHuiDfFAAAA:8 a=uf_7xRI606h7i5SyotYA:9 a=CjuIK1q_8ugA:10 a=MHa7eYg_D6UA:10 a=dzQ7K3EvDjAA:10 a=e4g4x8nkvQMA:10 a=s5zKW874KtQA:10 a=yMhMjlubAAAA:8 a=SSmOFEACAAAA:8 a=jt-XkSfm4vzjpSOyXFQA:9 a=K6Ao00MnpZ-oYKR_:21 a=gKO2Hq4RSVkA:10 a=UiCQ7L4-1S4A:10 a=hTZeC7Yk6K0A:10 a=frz4AuCg-hUA:10 a=lqcHg5cX4UMA:10 a=rVnDm9A_-c-k2ki-JAcA:9 a=3ZKOabzyN94A:10 a=zY0JdQc1-4EAyPf5TuXT:22 a=RAebWtRz8Iwz5EaBv9BE:22 a=En28ijUndprXoXGkFUkb:22
+X-SEG-SpamProfiler-Score: 0
+X-TM-AS-GCONF: 00
+X-TM-AS-Product-Ver: IMSVA-9.1.0.2195-9.0.0.1002-28516.000
+X-TM-AS-Result: No--22.098-5.0-31-10
+X-imss-scan-details: 
+	No--22.098-5.0-31-10;No--22.098-5.0-31-10;No--22.098-3.0-31-10
+X-TMASE-Version: IMSVA-9.1.0.2195-9.0.1002-28516.000
+X-TMASE-Result: 10--22.097700-10.000000
+X-TMASE-MatchedRID: RvgD6ijzkWnChWP4TGAnDv3Mwv7J07DXggrVGi5LBfBrqMMR8f2KK0mI
+	NtyE+GkxUndbyCNJkCuYbrx3h+q9yTn/wcdfjLjCl9q75JzWJROi1YG5GcTOT4xSvzXEuxuJqCt
+	YvCzTd37qmKJ/MhsVL0zlHfX65jaVy/528rRIehj7LHygOX0EvPcS0RxSD2A5ikrG1hD2mz8WKP
+	SEuNjLlOK0FBLKgQXa8kt6cC0voWfTfU1/F+PbM9gASfrbgABhOmcd2FDUExuPsKoL2VFqqDyK8
+	WRp1qJN47Pk/KrrUtQRvRG4urLwoaJYDeXFTTUT4+3w3qzEADfwYaRHgqJhQKiz2yX3N56R/Hfa
+	6GFG5NVQnul4pwUycE0xWB8Q2zWqeSGdAryJM8z9/10UwQkQ7KUdWCJez1mfssbEkSX6c0k56Ul
+	euofCzXT3ThQ61WeJiKecNdMEMXPhuntKSqs2aZIONJNyvJzUQMz2FEg88Uz1QovCpLEKUkt0WH
+	iFuBvKb/a9/r/uPfYhA8aiPkM6TvtfT3qu7RvDdqG1qxBycU5RWEHJS4rlV8ygAl+yObRO6V+wT
+	hLTbQt7yK/1IXb5gkhsAUTbVGRwBHB8QCO4P1U1RJ266pgcO+HMs9rQ0Ydl3rE8Oo7Zj65JJOsm
+	oFihLOeJm6LClLmHOY0uFdPXUM78dMpK2wMYwl3n+beqvEXMSprpPKHJe884KPKQxy+E/gvBPGQ
+	oLW6lDWo1/vBF88XM0QPdYuYm98PDPFi81d1AuKAG4OMlyf84No34L92afffnaHkTI99QcOiL5Z
+	rDbJL1DaKIH7Nh6t/e8Uql5ZKHHwZxms31zY6rN22AudVYwkhY2t0xWKP6A5YSHWdShDG6iIPZB
+	Kf+YjKHYLsR4q0LHxPMjOKY7A/+xOhjarOnHl6pKYxfRdIpx/OaSH9EKltjF674iqaTweJGF26G
+	8SWy8lP6F/raTZghtlJZdlnnbQ==
+X-TMASE-SNAP-Result: 1.821001.0001-0-2-1:0,12:0,22:0,33:0,34:0-0
+
+--_000_CWLP265MB45313AB816434548BF7D1136CCD92CWLP265MB4531GBRP_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Dear Phil,
+
+I hope this email finds you well.
+
+We are writing to express our surprise and concern regarding the commence=
+ment of your proposed building works without sharing the plans with us as=
+=20joint freeholders. As you may recall, we have previously raised this m=
+atter and would have expected to be consulted prior to the start of any c=
+onstruction activities.
+
+Moreover, despite your surveyor's advice, our independent advice indicate=
+s that as our flat constitutes a "party structure" we should have been se=
+rved a Party Wall Agreement notice before commencement of any major works=
+=20(part wall act attached for your convenience) . This is a legal requir=
+ement in such situations. We will take further advice regarding this matt=
+er from Southwark building control and an independent surveyor. We believ=
+e that you will be financially responsible for this.
+
+Additionally, we have observed a significant accumulation of construction=
+=20waste in both the shared front garden and major excavations taking pla=
+ce in the back. This has unfortunately prevented us from accessing and us=
+ing our garden, which we find both inconvenient and disruptive.
+
+We have sent you photographs of the broken pipe which we believe is part =
+of waste water drainage. We note that as of yesterday (06.07.24) this was=
+=20covered with a black bag, with excavation continuing. We would be most=
+=20grateful if you could confirm with your contractors the purpose of thi=
+s pipe. It is imperative that this is repaired before any further excavat=
+ion risking silt and clay entering the pipe. As am sure you are aware our=
+=20drainage of sewage and waste water will need to be moved as part of yo=
+ur project. We insist that any further structural or major excavation is =
+halted until this matter is resolved.
+
+We strongly request visibility of full architectural plans, structural su=
+rvey and building plan of works to prevent future disruption.
+
+We would appreciate your prompt attention to these matters and look forwa=
+rd to your response. Ensuring open communication and adherence to legal r=
+equirements will help us resolve these issues amicably and avoid any furt=
+her inconvenience.
+
+Thank you for your understanding and cooperation.
+
+Best regards,
+
+Wendy and Morgan
+27 Ashbourne Grove
+East Dulwich London UK
+SE22 8RN
+
+--
+
+
+Wendy Walker
+Clinical Specialist Speech and Language Therapist
+
+Adults with Learning Disabilities
+Vulnerable Adults & Prevention Service
+
+Tel: 0203 049 7518
+Mobile: 07787 878637
+
+Email: wendy.walker@gstt.nhs.uk<mailto:wendy.walker@gstt.nhs.uk>
+Secure email only: wendy.walker12@nhs.net<mailto:wendy.walker12@nhs.net>
+
+Our values<http://gti/services/organisational-devt/values-behaviours/our-=
+values.aspx>: Put patients first | Take pride in what we do | Respect oth=
+ers |Strive to be the best | Act with integrity
+
+
+*************************************************************************=
+************
+
+The information contained in this message and or attachments is intended =
+only for the
+person or entity to which it is addressed and may contain confidential an=
+d/or=20
+privileged material. Unless otherwise specified, the opinions expressed h=
+erein do not
+necessarily represent those of Guy's and St Thomas' NHS Foundation Trust =
+or=20
+any of its subsidiaries. The information contained in this e-mail may be =
+subject to=20
+public disclosure under the Freedom of Information Act 2000. Unless the i=
+nformation=20
+is legally exempt from disclosure, the confidentiality of this e-mail and=
+=20any replies
+cannot be guaranteed.
+
+Any review, retransmission,dissemination or other use of, or taking of an=
+y action in=20
+reliance upon, this information by persons or entities other than the int=
+ended
+recipient is prohibited. If you received this in error, please contact th=
+e sender
+and delete the material from any system and destroy any copies.
+
+We make every effort to keep our network free from viruses. However, it i=
+s your
+responsibility to ensure that this e-mail and any attachments are free of=
+=20viruses as
+we can take no responsibility for any computer virus which might be trans=
+ferred by=20
+way of this e-mail.
+
+*************************************************************************=
+************
+
+--_000_CWLP265MB45313AB816434548BF7D1136CCD92CWLP265MB4531GBRP_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-mi=
+crosoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:wo=
+rd" xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D=
+"http://www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-asci=
+i">
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">=
+
+<style><!--
+/* Font Definitions */
+@font-face
+=09{font-family:"Cambria Math";
+=09panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+=09{font-family:Calibri;
+=09panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+=09{font-family:"Century Gothic";
+=09panose-1:2 11 5 2 2 2 2 2 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+=09{margin:0cm;
+=09margin-bottom:.0001pt;
+=09font-size:11.0pt;
+=09font-family:"Calibri",sans-serif;
+=09mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+=09{mso-style-priority:99;
+=09color:#0563C1;
+=09text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+=09{mso-style-priority:99;
+=09color:#954F72;
+=09text-decoration:underline;}
+span.EmailStyle17
+=09{mso-style-type:personal-compose;
+=09font-family:"Calibri",sans-serif;
+=09color:windowtext;}
+.MsoChpDefault
+=09{mso-style-type:export-only;
+=09font-family:"Calibri",sans-serif;
+=09mso-fareast-language:EN-US;}
+@page WordSection1
+=09{size:612.0pt 792.0pt;
+=09margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+=09{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-GB" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Dear Phil,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I hope this email finds you well.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">We are writing to express our surprise and concern=
+=20regarding the commencement of your proposed building works without sha=
+ring the plans with us as joint freeholders. As you may recall, we have p=
+reviously raised this matter and would have
+=20expected to be consulted prior to the start of any construction activi=
+ties.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Moreover, despite your surveyor&#8217;s advice, ou=
+r independent advice indicates that as our flat constitutes a &#8220;part=
+y structure&#8221; we should have been served a Party Wall Agreement noti=
+ce before commencement of any major works (part wall act attached
+=20for your convenience) . This is a legal requirement in such situations=
+. We will take further advice regarding this matter from Southwark buildi=
+ng control and an independent surveyor. We believe that you will be finan=
+cially responsible for this.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Additionally, we have observed a significant accum=
+ulation of construction waste in both the shared front garden and major e=
+xcavations taking place in the back. This has unfortunately prevented us =
+from accessing and using our garden, which
+=20we find both inconvenient and disruptive. <o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">We have sent you photographs of the broken pipe wh=
+ich we believe is part of waste water drainage. We note that as of yester=
+day (06.07.24) this was covered with a black bag, with excavation continu=
+ing. We would be most grateful if you could
+=20confirm with your contractors the purpose of this pipe. It is imperati=
+ve that this is repaired before any further excavation risking silt and c=
+lay entering the pipe. As am sure you are aware our drainage of sewage an=
+d waste water will need to be moved as part
+=20of your project. We insist that any further structural or major excava=
+tion is halted until this matter is resolved.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">We strongly request visibility of full architectur=
+al plans, structural survey and building plan of works to prevent future =
+disruption.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">We would appreciate your prompt attention to these=
+=20matters and look forward to your response. Ensuring open communication=
+=20and adherence to legal requirements will help us resolve these issues =
+amicably and avoid any further inconvenience.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thank you for your understanding and cooperation.<=
+o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Best regards,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Wendy and Morgan<o:p></o:p></p>
+<p class=3D"MsoNormal">27 Ashbourne Grove<o:p></o:p></p>
+<p class=3D"MsoNormal">East Dulwich London UK<o:p></o:p></p>
+<p class=3D"MsoNormal">SE22 8RN<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">--<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;=
+Century Gothic&quot;,sans-serif;color:black;mso-fareast-language:EN-GB">W=
+endy Walker<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;=
+Century Gothic&quot;,sans-serif;color:black;mso-fareast-language:EN-GB">C=
+linical Specialist&nbsp;Speech&nbsp;and Language Therapist<o:p></o:p></sp=
+an></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;=
+Century Gothic&quot;,sans-serif;color:black;mso-fareast-language:EN-GB"><=
+o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;=
+Century Gothic&quot;,sans-serif;color:black;mso-fareast-language:EN-GB">A=
+dults with Learning Disabilities<br>
+Vulnerable Adults &amp; Prevention Service&nbsp;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;=
+Century Gothic&quot;,sans-serif;color:black;mso-fareast-language:EN-GB"><=
+br>
+Tel: 0203 049 7518<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;=
+Century Gothic&quot;,sans-serif;color:black;mso-fareast-language:EN-GB">M=
+obile: 07787 878637<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;=
+Century Gothic&quot;,sans-serif;color:black;mso-fareast-language:EN-GB"><=
+br>
+Email:&nbsp;<a href=3D"mailto:wendy.walker@gstt.nhs.uk"><span style=3D"co=
+lor:blue">wendy.walker@gstt.nhs.uk</span></a> &nbsp;&nbsp;<o:p></o:p></sp=
+an></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;=
+Century Gothic&quot;,sans-serif;color:black;mso-fareast-language:EN-GB">S=
+ecure email only:
+<a href=3D"mailto:wendy.walker12@nhs.net"><span style=3D"color:blue">wend=
+y.walker12@nhs.net</span></a>
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;=
+Century Gothic&quot;,sans-serif;color:black;mso-fareast-language:EN-GB"><=
+o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:black;mso-fareast-language:EN=
+-GB"><a href=3D"http://gti/services/organisational-devt/values-behaviours=
+/our-values.aspx" target=3D"_blank"><b><span style=3D"font-family:&quot;A=
+rial&quot;,sans-serif;color:black;background:white">Our values</span></b>=
+</a></span><b><span style=3D"font-family:&quot;Arial&quot;,sans-serif;col=
+or:black;background:white;mso-fareast-language:EN-GB">:</span></b><b><spa=
+n style=3D"font-family:&quot;Arial&quot;,sans-serif;color:#2F5597;backgro=
+und:white;mso-fareast-language:EN-GB">&nbsp;</span></b><b><span style=3D"=
+font-family:&quot;Arial&quot;,sans-serif;color:#32308D;background:white;m=
+so-fareast-language:EN-GB">Put
+=20patients first</span></b><b><span style=3D"font-family:&quot;Arial&quo=
+t;,sans-serif;color:#7030A0;background:white;mso-fareast-language:EN-GB">=
+&nbsp;</span></b><b><span style=3D"font-family:&quot;Arial&quot;,sans-ser=
+if;color:black;background:white;mso-fareast-language:EN-GB">|</span></b><=
+b><span style=3D"font-family:&quot;Arial&quot;,sans-serif;color:#1F497D;b=
+ackground:white;mso-fareast-language:EN-GB">&nbsp;</span></b><b><span sty=
+le=3D"font-family:&quot;Arial&quot;,sans-serif;color:#005EB8;background:w=
+hite;mso-fareast-language:EN-GB">Take
+=20pride in what we do</span></b><b><span style=3D"font-family:&quot;Aria=
+l&quot;,sans-serif;color:#1F497D;background:white;mso-fareast-language:EN=
+-GB">&nbsp;</span></b><b><span style=3D"font-family:&quot;Arial&quot;,san=
+s-serif;color:black;background:white;mso-fareast-language:EN-GB">|</span>=
+</b><b><span style=3D"font-family:&quot;Arial&quot;,sans-serif;color:#1F4=
+97D;background:white;mso-fareast-language:EN-GB">&nbsp;</span></b><b><spa=
+n style=3D"font-family:&quot;Arial&quot;,sans-serif;color:#00A5E0;backgro=
+und:white;mso-fareast-language:EN-GB">Respect
+=20others</span></b><b><span style=3D"font-family:&quot;Arial&quot;,sans-=
+serif;color:#1F497D;background:white;mso-fareast-language:EN-GB">&nbsp;</=
+span></b><b><span style=3D"font-family:&quot;Arial&quot;,sans-serif;color=
+:black;background:white;mso-fareast-language:EN-GB">|</span></b><b><span =
+style=3D"font-family:&quot;Arial&quot;,sans-serif;color:#00A499;backgroun=
+d:white;mso-fareast-language:EN-GB">Strive
+=20to be the best</span></b><b><span style=3D"font-family:&quot;Arial&quo=
+t;,sans-serif;color:#548235;background:white;mso-fareast-language:EN-GB">=
+&nbsp;</span></b><b><span style=3D"font-family:&quot;Arial&quot;,sans-ser=
+if;color:black;background:white;mso-fareast-language:EN-GB">|</span></b><=
+b><span style=3D"font-family:&quot;Arial&quot;,sans-serif;color:#1F497D;b=
+ackground:white;mso-fareast-language:EN-GB">&nbsp;</span></b><b><span sty=
+le=3D"font-family:&quot;Arial&quot;,sans-serif;color:#00B050;background:w=
+hite;mso-fareast-language:EN-GB">Act
+=20with integrity</span></b><span style=3D"font-size:10.0pt;font-family:&=
+quot;Century Gothic&quot;,sans-serif;color:black;mso-fareast-language:EN-=
+GB"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+
+<DIV>
+<HR>
+</DIV>
+<DIV><FONT face=3DArial size=3D2>The information contained in this messag=
+e and or=20
+attachments is intended only for the person or entity to which it is addr=
+essed=20
+and may contain confidential and/or privileged material. </FONT></DIV>
+<DIV><FONT face=3DArial size=3D2></FONT>&nbsp;</DIV>
+<DIV><FONT face=3DArial size=3D2>Unless otherwise specified, the opinions=
+=20expressed=20
+herein do not necessarily represent those of Guy's and St Thomas' NHS Fou=
+ndation=20
+Trust or any of its subsidiaries. </FONT></DIV>
+<DIV><FONT face=3DArial size=3D2></FONT>&nbsp;</DIV>
+<DIV><FONT face=3DArial size=3D2>The information contained in this e-mail=
+=20may be=20
+subject to public disclosure under the Freedom of Information Act 2000. U=
+nless=20
+the information is legally exempt from disclosure, the confidentiality of=
+=20this=20
+e-mail and any replies cannot be guaranteed.</FONT></DIV>
+<DIV><FONT face=3DArial size=3D2></FONT>&nbsp;</DIV>
+<DIV><FONT face=3DArial size=3D2>Any review, retransmission,dissemination=
+=20or other=20
+use of, or taking of any action in reliance upon, this information by per=
+sons or=20
+entities other than the intended recipient is prohibited. If you received=
+=20this=20
+in error, please contact the sender and delete the material from any syst=
+em and=20
+destroy any copies.</FONT></DIV>
+<DIV><FONT face=3DArial size=3D2></FONT>&nbsp;</DIV>
+<DIV><FONT face=3DArial size=3D2>We make every effort to keep our network=
+=20free from=20
+viruses. However, it is your responsibility to ensure that this e-mail an=
+d any=20
+attachments are free of viruses as we can take no responsibility for any =
+
+computer virus which might be transferred by way of this e-mail.</FONT></=
+DIV>
+<HR>
+</body>
+</html>
+
+--_000_CWLP265MB45313AB816434548BF7D1136CCD92CWLP265MB4531GBRP_--
+

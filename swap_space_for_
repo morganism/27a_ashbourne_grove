@@ -1,0 +1,12 @@
+#!/bin/bash
+
+file=$*
+
+echo $file
+newname=$(echo $file | tr ' ' '_')
+echo $newname
+if [ -e "$file" ]; then
+  echo "Yo i exist $file"
+fi
+mv "$file" "$newname"
+
